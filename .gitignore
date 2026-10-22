@@ -1,0 +1,32 @@
+# ---- build output ----
+build/
+Debug/
+Release/
+
+# ---- Keil MDK-ARM project (this repo builds with CMake) ----
+MDK-ARM/
+RTE/
+
+# ---- compiled objects / binaries ----
+*.o
+*.d
+*.elf
+*.hex
+*.bin
+*.map
+*.axf
+*.crf
+*.dep
+*.lnp
+*.lst
+*.iex
+*.sct
+*.bak
+*.damaged
+
+# ---- IDE / OS ----
+.settings/
+*.uvguix.*
+*.uvoptx
+Thumbs.db
+desktop.ini

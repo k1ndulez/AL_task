@@ -1,0 +1,22 @@
+{
+    // 按 F5 即可：先编译，再通过 ST-Link 下载并停在 main()，之后可以单步、断点、看变量/外设寄存器
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "stlinkgdbtarget",
+            "request": "launch",
+            "name": "调试 (ST-Link, STM32F103C8)",
+            "origin": "launch",
+            "cwd": "${workspaceFolder}",
+            "deviceName": "STM32F103C8",
+            "deviceCore": "Cortex-M3",
+            "program": "${workspaceFolder}/build/Debug/1111.elf",
+            "svdPath": "${env:LOCALAPPDATA}/stm32cube/packs/STMicroelectronics/stm32f1xx_dfp/1.2.0/SVD/STM32F103.svd",
+            "serverInterface": "SWD",
+            "runEntry": "main",
+            // 先编译 + 用 STM32CubeProgrammer 真正把 elf 烧进芯片，再启动调试会话。
+            // （ST 的调试适配器本身不做烧录，所以之前改了代码 F5 也不会更新 Flash）
+            "preLaunchTask": "编译并烧录"
+        }
+    ]
+}

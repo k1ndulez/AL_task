@@ -1,0 +1,18 @@
+{
+    "cmake.cmakePath": "cube-cmake",
+    "cmake.configureArgs": [
+        "-DCMAKE_COMMAND=cube-cmake"
+    ],
+    "cmake.preferredGenerators": [
+        "Ninja"
+    ],
+    "stm32cube-ide-clangd.path": "cube",
+    "stm32cube-ide-clangd.arguments": [
+        "starm-clangd",
+        "--query-driver=${env:CUBE_BUNDLE_PATH}/gnu-tools-for-stm32/14.3.1+st.2/bin/arm-none-eabi-gcc*",
+        "--query-driver=${env:CUBE_BUNDLE_PATH}/gnu-tools-for-stm32/14.3.1+st.2/bin/arm-none-eabi-g++*"
+    ],
+    // 代码补全/跳转由 clangd 负责（它读 build/Debug/compile_commands.json），
+    // 关掉 C/C++ 扩展的 IntelliSense，避免它用 D:\mingw64 的 gcc 去解析 ARM 工程而报警告
+    "C_Cpp.intelliSenseEngine": "disabled"
+}

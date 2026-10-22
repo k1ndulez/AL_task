@@ -1,0 +1,57 @@
+{
+    // 菜单：终端 -> 运行任务 (Ctrl+Shift+P -> Tasks: Run Task)
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "编译 (Build)",
+            "type": "shell",
+            "command": "${env:LOCALAPPDATA}/stm32cube/bundles/cmake/4.4.0+st.1/bin/cmake.exe",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build/Debug"
+            ],
+            "problemMatcher": [
+                "$gcc"
+            ]
+        },
+        {
+            "label": "烧录 (Download)",
+            "type": "shell",
+            "command": "${env:LOCALAPPDATA}/stm32cube/bundles/programmer/2.23.0/bin/STM32_Programmer_CLI.exe",
+            "args": [
+                "-c",
+                "port=SWD",
+                "-w",
+                "${workspaceFolder}/build/Debug/1111.elf",
+                "-v",
+                "-rst"
+            ],
+            "options": {
+                "cwd": "${env:LOCALAPPDATA}/stm32cube/bundles/programmer/2.23.0/bin"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "检查 ST-Link 连接",
+            "type": "shell",
+            "command": "${env:LOCALAPPDATA}/stm32cube/bundles/programmer/2.23.0/bin/STM32_Programmer_CLI.exe",
+            "args": [
+                "-c",
+                "port=SWD"
+            ],
+            "options": {
+                "cwd": "${env:LOCALAPPDATA}/stm32cube/bundles/programmer/2.23.0/bin"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "编译并烧录",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "编译 (Build)",
+                "烧录 (Download)"
+            ],
+            "problemMatcher": []
+        }
+    ]
+}
